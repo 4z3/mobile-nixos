@@ -12,6 +12,7 @@
   # Internally used to tack on configuration by release.nix
 , additionalConfiguration ? {}
 , additionalHelpInstructions ? ""
+, system ? builtins.currentSystem
 }:
 if pkgs == null then (builtins.throw "The `pkgs` argument needs to be provided to eval-with-configuration.nix") else
 let
@@ -32,7 +33,7 @@ let
   eval = evalWith {
     device = final_device;
     modules = configuration;
-    inherit additionalConfiguration;
+    inherit additionalConfiguration system;
   };
 
   # Makes a mostly useless header.

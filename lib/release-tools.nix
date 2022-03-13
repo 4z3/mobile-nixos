@@ -25,8 +25,9 @@ rec {
       (import ../modules/module-list.nix)
       ++ (import "${toString pkgs.path}/nixos/modules/module-list.nix")
     )
+    , system ? builtins.currentSystem
   }: evalConfig {
-    inherit baseModules;
+    inherit baseModules system;
     modules =
       (if device ? special
       then [ device.config ]

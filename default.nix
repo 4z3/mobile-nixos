@@ -1,6 +1,7 @@
 { device ? null
 , configuration ? null
 , pkgs ? (import ./pkgs.nix {})
+, system ? builtins.currentSystem
 }@args':
 
 let
